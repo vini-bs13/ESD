@@ -96,7 +96,7 @@ public class Vetor<T> {
         System.out.println("]");
     }
 
-    public Object ler(int indice) {
+    public T ler(int indice) {
         if (indice >= 0 && indice < tamanho) {
             return elementos[indice];
         } else {
@@ -110,60 +110,88 @@ public class Vetor<T> {
     }
 
 
-    public void geradorAleatorio(Vetor<Integer> vetor,int quantidade, int range){
-
-
-        int intervalo1 = 0;
-        int intervalo2 = 100;
-        int[] numeros = new int[quantidade];
-
-        for (int i = 0; i < quantidade; i++) {
-           int numRandom = (int) (Math.random() * ((intervalo2 - intervalo1) + 1)) + intervalo1;
-
-           numeros[i] = numRandom;
-
-            // Verificar repetição
-            for (int j = 0; j < numeros.length; j++) {
-                if (numRandom == numeros[j] && numeros[0] != 0){
-                    return;
-                }
-            }
-
-            // Ordenar Crescentemente
-
-
-            for (int j = 0; j < tamanho; j++) {
-                if ((int)elementos[j] < numeros[i] ) {
-                    inserir(j,numeros[i]);
-                }
-
-            }
-
-
-        }
-
-    }
+//    public void geradorAleatorio(Vetor<Integer> vetor,int quantidade, int range){
+//
+//
+//        int intervalo1 = 0;
+//        int intervalo2 = 100;
+//        int[] numeros = new int[quantidade];
+//
+//        for (int i = 0; i < quantidade; i++) {
+//           int numRandom = (int) (Math.random() * ((intervalo2 - intervalo1) + 1)) + intervalo1;
+//
+//           numeros[i] = numRandom;
+//
+//            // Verificar repetição
+//            for (int j = 0; j < numeros.length; j++) {
+//                if (numRandom == numeros[j] && numeros[0] != 0){
+//                    return;
+//                }
+//            }
+//
+//            // Ordenar Crescentemente
+//
+//
+//            for (int j = 0; j < tamanho; j++) {
+//                if ((int)elementos[j] < numeros[i] ) {
+//                    inserir(j,numeros[i]);
+//                }
+//
+//            }
+//
+//
+//        }
+//
+//    }
 
     public void inserirOrdenado(T valor){
 
-        if (localizar)
+        if (localizar(valor) != -1){
+            System.out.println("Valor " + valor + " já existente");
+        }
 
-        if (tamanho == 0){
-            inserir(tamanho,valor);
+        if (tamanho == elementos.length){
+            expandir();
             return;
         }
-
-        for (int i = 0; i < tamanho; i++) {
-            if ((Integer) valor < (Integer) elementos[i]){
-                inserir(i,valor);
+        int i;
+        for (i = tamanho - 1; i >= 0; i--) {
+            Integer atual = (Integer) elementos[i];
+            if (atual > (Integer) valor){
+                elementos[i + 1] = elementos[i]; // desloca para a direita
+            } else {
                 break;
             }
-
         }
+        elementos[i + 1] = valor;
+        tamanho++;
     }
 
     public void inserirOrdenadoLivro(T valor){
+        if (localizar(valor) != -1) {
+            System.out.println("Valor " + valor + " já existe na lista.");
+            return;
+        }
+        if (tamanho == 0) {
+            inserir(tamanho,valor);
+            return;
+        }
+        for (int i = 0; i < tamanho; i++) {
+            if ((Integer)valor < (Integer) elementos[i]) {
+                inserir(i,valor);
+                break;
+            }
+        }
 
+    }
+
+    public int localizar(T elemento) {
+        for (int i = 0; i < tamanho; i++) {
+            if (elementos[i] != null && elementos[i] == elemento) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }
