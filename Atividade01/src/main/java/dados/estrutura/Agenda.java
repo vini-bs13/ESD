@@ -33,14 +33,7 @@ public class Agenda {
 
         contatos[tamanho] = contato;
         tamanho++;
-//        if (tamanho < contatos.length){
-//
-//            contatos[tamanho] = contato;
-//            tamanho++;
-//            System.out.println("Contato adicionado com sucesso!" + '\n');
-//        } else  {
-//            System.out.println("A agenda está cheia!" + '\n');
-//        }
+         System.out.println("Contato adicionado com sucesso!" + '\n');
     }
 
     public void removerContatoIndice(int indice){

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Atividade00" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Atividade00" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Atividade01" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Atividade01" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Aula01" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Aula01" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Aula02" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Aula02" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Aula03" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Aula03" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Aula04" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Aula04" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
