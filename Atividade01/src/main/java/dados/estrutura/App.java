@@ -30,85 +30,90 @@ public class App {
             opcao = Integer.parseInt(IO.readln("Entre com uma opção: "));
 
 
+            switch (opcao) {
+                case 1 -> {
+                    String nome = IO.readln("Insira o nome do contato: ");
+                    String telefone = IO.readln("Insira o telefone: ");
+                    Contato contatog = new Contato(nome, telefone);
 
-        switch (opcao) {
-            case 1 -> {
-                String nome = IO.readln("Insira o nome do contato: ");
-                String telefone = IO.readln("Insira o telefone: ");
-                Contato contatog =  new Contato(nome, telefone);
+                    agenda.addContato(contatog);
+                }
+                case 2 -> {
+                    String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja remover: ");
 
-                agenda.addContato(contatog);
-            }
-            case 2 -> {
-                String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja remover: ");
+                    agenda.removerContato(nomeTel);
+                }
+                case 3 -> {
+                    String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja encontrar: ");
 
-                agenda.removerContato(nomeTel);
-            }
-            case 3 -> {
-                String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja encontrar: ");
+                    Contato contatoAnalise = new Contato(nomeTel, nomeTel);
 
-                Contato contatoAnalise = new Contato(nomeTel,nomeTel);
+                    Contato contatoBuscado = agenda.buscarContato(contatoAnalise);
 
-                Contato contatoBuscado = agenda.buscarContato(contatoAnalise);
-
-                if (contatoBuscado == null) {
-                    System.out.println("Contato não encontrado");
-                } else {
+                    if (contatoBuscado == null) {
+                        System.out.println("Contato não encontrado");
+                    } else {
                         System.out.println(contatoBuscado);
+                    }
+
                 }
+                case 4 -> {
+                    String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja atualizar: ");
 
-            }
-            case 4 -> {
-                String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja atualizar: ");
+                    String nome = IO.readln("Insira o novo nome: ");
+                    String tel = IO.readln("Insira o novo telefone: ");
 
-                String nome = IO.readln("Insira o novo nome: ");
-                String tel = IO.readln("Insira o novo telefone: ");
+                    Contato contatoAtualizado = new Contato(nome, tel);
 
-                Contato contatoAtualizado = new Contato(nome, tel);
-
-                agenda.atualizarContato(nomeTel, contatoAtualizado);
-            }
-            case 5 -> {
-                Contato[] contatos = agenda.listarContatos();
-                for(Contato elemento : contatos) {
-                    System.out.println(elemento);
+                    agenda.atualizarContato(nomeTel, contatoAtualizado);
                 }
-            }
-            case 6 -> {
-                Contato variosContatos[] = {
-                        new Contato("Bola","123"),
-                        new Contato("Carro","1856858"),
-                        new Contato("Quadrado","17357"),
-                };
-
-                agenda.adicionarVariosContatos(variosContatos);
-                agenda.listarContatos();
-
-//                        IO.readln("Insira os novos contatos: ");
-
-            }
-            case 7 -> {
-                String prefixo = IO.readln("Insira o prefixo que desejar buscar: ");
-
-                Contato[] encontrados = agenda.buscarPrefixo(prefixo);
-
-                if(encontrados.length == 0) {
-                    System.out.println("Nenhum contato encontrado");
-                } else{
-                    for (Contato contato : encontrados){
-                        System.out.println(contato);
+                case 5 -> {
+                    Contato[] contatos = agenda.listarContatos();
+                    for (Contato elemento : contatos) {
+                        System.out.println(elemento);
                     }
                 }
+                case 6 -> {
 
-            }
-            case 8 -> {
-                System.out.println("Fechando agenda...");
-            }
+                    int quantidade = Integer.parseInt(IO.readln("Insira a quantidade de contatos que deseja adicionar: "));
+                    Contato[] variosContatos = new Contato[quantidade];
 
+                    for (int i = 0; i < quantidade; i++) {
+                        String nome = IO.readln("Insira o nome do contato: ");
+                        String telefone = IO.readln("Insira o telefone: ");
+
+                        variosContatos[i] = new Contato(nome, telefone);
+                    }
+
+                    agenda.adicionarVariosContatos(variosContatos);
+                    Contato[] contatos = agenda.listarContatos();
+                    for (Contato elemento : contatos) {
+                        System.out.println(elemento);
+                    }
+
+                }
+                case 7 -> {
+                    String prefixo = IO.readln("Insira o prefixo que desejar buscar: ");
+
+                    Contato[] encontrados = agenda.buscarPrefixo(prefixo);
+
+                    if (encontrados.length == 0) {
+                        System.out.println("Nenhum contato encontrado");
+                    } else {
+                        for (Contato contato : encontrados) {
+                            System.out.println(contato);
+                        }
+                    }
+
+                }
+                case 8 -> {
+                    System.out.println("Fechando agenda...");
                 }
 
             }
-        }
 
+        }
     }
+
+}
 
