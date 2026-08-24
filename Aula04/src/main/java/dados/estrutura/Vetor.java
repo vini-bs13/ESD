@@ -87,9 +87,9 @@ public class Vetor<T> {
     public void imprimir(){
         System.out.print("[");
 
-        for (int i = 0; i < elementos.length; i++) {
+        for (int i = 0; i < tamanho; i++) {
             System.out.print(elementos[i]);
-            if (i < elementos.length -1){
+            if (i < tamanho -1){
                 System.out.print(", ");
             }
         }
@@ -110,49 +110,15 @@ public class Vetor<T> {
     }
 
 
-//    public void geradorAleatorio(Vetor<Integer> vetor,int quantidade, int range){
-//
-//
-//        int intervalo1 = 0;
-//        int intervalo2 = 100;
-//        int[] numeros = new int[quantidade];
-//
-//        for (int i = 0; i < quantidade; i++) {
-//           int numRandom = (int) (Math.random() * ((intervalo2 - intervalo1) + 1)) + intervalo1;
-//
-//           numeros[i] = numRandom;
-//
-//            // Verificar repetição
-//            for (int j = 0; j < numeros.length; j++) {
-//                if (numRandom == numeros[j] && numeros[0] != 0){
-//                    return;
-//                }
-//            }
-//
-//            // Ordenar Crescentemente
-//
-//
-//            for (int j = 0; j < tamanho; j++) {
-//                if ((int)elementos[j] < numeros[i] ) {
-//                    inserir(j,numeros[i]);
-//                }
-//
-//            }
-//
-//
-//        }
-//
-//    }
-
     public void inserirOrdenado(T valor){
 
         if (localizar(valor) != -1){
             System.out.println("Valor " + valor + " já existente");
+            return;
         }
 
         if (tamanho == elementos.length){
             expandir();
-            return;
         }
         int i;
         for (i = tamanho - 1; i >= 0; i--) {
@@ -187,7 +153,7 @@ public class Vetor<T> {
 
     public int localizar(T elemento) {
         for (int i = 0; i < tamanho; i++) {
-            if (elementos[i] != null && elementos[i] == elemento) {
+            if (elementos[i] != null && elementos[i].equals(elemento)) {
                 return i;
             }
         }
