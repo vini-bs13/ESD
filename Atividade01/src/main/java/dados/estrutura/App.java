@@ -37,7 +37,8 @@ public class App {
                 String telefone = IO.readln("Insira o telefone: ");
                 Contato contatog =  new Contato(nome, telefone);
 
-                agenda.addContato(contatog);}
+                agenda.addContato(contatog);
+            }
             case 2 -> {
                 String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja remover: ");
 
@@ -46,7 +47,16 @@ public class App {
             case 3 -> {
                 String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja encontrar: ");
 
-                agenda.buscarContato(nomeTel);
+                Contato contatoAnalise = new Contato(nomeTel,nomeTel);
+
+                Contato contatoBuscado = agenda.buscarContato(contatoAnalise);
+
+                if (contatoBuscado == null) {
+                    System.out.println("Contato não encontrado");
+                } else {
+                        System.out.println(contatoBuscado);
+                }
+
             }
             case 4 -> {
                 String nomeTel = IO.readln("Insira o nome ou telefone do contato que deseja atualizar: ");
@@ -54,9 +64,16 @@ public class App {
                 String nome = IO.readln("Insira o novo nome: ");
                 String tel = IO.readln("Insira o novo telefone: ");
 
-                agenda.atualizarContato(nomeTel,nome,tel);
+                Contato contatoAtualizado = new Contato(nome, tel);
+
+                agenda.atualizarContato(nomeTel, contatoAtualizado);
             }
-            case 5 -> {agenda.listarContatos();}
+            case 5 -> {
+                Contato[] contatos = agenda.listarContatos();
+                for(Contato elemento : contatos) {
+                    System.out.println(elemento);
+                }
+            }
             case 6 -> {
                 Contato variosContatos[] = {
                         new Contato("Bola","123"),
@@ -73,12 +90,20 @@ public class App {
             case 7 -> {
                 String prefixo = IO.readln("Insira o prefixo que desejar buscar: ");
 
-                agenda.buscarPrefixo(prefixo);
+                Contato[] encontrados = agenda.buscarPrefixo(prefixo);
+
+                if(encontrados.length == 0) {
+                    System.out.println("Nenhum contato encontrado");
+                } else{
+                    for (Contato contato : encontrados){
+                        System.out.println(contato);
+                    }
+                }
+
             }
             case 8 -> {
                 System.out.println("Fechando agenda...");
             }
-
 
                 }
 

@@ -41,10 +41,10 @@ public class Agenda {
             System.out.println("Erro na agenda!");
             return;
         }
-        for (int i = indice; i < tamanho; i++) {
-            contatos[i] = contatos [i+1];
+        for (int i = indice; i < tamanho - 1; i++) {
+            contatos[i] = contatos [i + 1];
         }
-        contatos[tamanho-1] = null;
+        contatos[tamanho - 1] = null;
         tamanho--;
         reduzirAgenda();
     }
@@ -65,52 +65,51 @@ public class Agenda {
 
     }
 
-    public void listarContatos(){
+    public Contato[] listarContatos(){
+        Contato[] contatosLista = new Contato[tamanho];
         for (int i = 0; i < tamanho; i++) {
-            System.out.printf(contatos[i].toString());
+            contatosLista[i] = contatos[i];
         }
+        return contatosLista;
     }
 
-    public void buscarContato(String nomeTel){
+    public Contato buscarContato(Contato contato){
         for (int i = 0; i < tamanho; i++) {
-            if (contatos[i].getNome().equals(nomeTel)){
-                System.out.println(contatos[i].toString());
-                return;
-            } else if (contatos[i].getTelefone().equals(nomeTel)) {
-                System.out.println(contatos[i].toString());
-                return;
+            if (contatos[i].getNome().equals(contato.getNome()) ||  contatos[i].getTelefone().equals(contato.getTelefone())){
+               return contatos[i];
             }
         }
-        System.out.println("Contato não encontrado!" + '\n');
+        return null;
     }
 
 
 
     // Evitar entrar com todas essas Strings, entrar com um Contato
 
-    public void atualizarContato(String nomeTel, String nome, String tel){
+
+    public void atualizarContato(String nomeTel, Contato contatoAtualizado) {
         for (int i = 0; i < tamanho; i++) {
-            if (contatos[i].getNome().equals(nomeTel) || contatos[i].getTelefone().equals(nomeTel)){
+            if (contatos[i].getNome().equals(nomeTel) || contatos[i].getTelefone().equals(nomeTel)) {
                 for (int j = 0; j < tamanho; j++) {
-                    if (nome.equals(contatos[j].getNome())){
-                        System.out.println("Nome já cadastrado!" + '\n');
-                        nome = "";
-                        return;
-                    } else if (tel.equals(contatos[j].getTelefone())) {
-                        System.out.println("Telefone já cadastrado!" + '\n');
-                        tel = "";
-                        return;
+                    if (i != j) {
+                        if (contatoAtualizado.getNome().equals(contatos[j].getNome())) {
+                            System.out.println("Nome já cadastrado!" + '\n');
+                            return;
+                        }
+                        if (contatoAtualizado.getTelefone().equals(contatos[j].getTelefone())) {
+                            System.out.println("Telefone já cadastrado!" + '\n');
+                            return;
+                        }
                     }
                 }
-
-                contatos[i].setNome(nome);
-                contatos[i].setTelefone(tel);
+                contatos[i] = contatoAtualizado;
                 System.out.println("Contato atualizado com sucesso!");
                 return;
-            }
-        }
 
-        System.out.println("Atualização não concluída!");
+            }
+
+            System.out.println("Atualização não concluída!");
+        }
     }
 
     public void adicionarVariosContatos(Contato[] arrayContatos){
@@ -122,14 +121,24 @@ public class Agenda {
 
     // Evitar retornar Strings, trocar "void" por "Contato[]" e retornar o próprio contato
 
-    public void buscarPrefixo(String prefixo){
+
+    public Contato[] buscarPrefixo(String prefixo) {
+        int encontrados = 0;
+
         for (int i = 0; i < tamanho; i++) {
-            if (contatos[i].getNome().startsWith(prefixo)){
-                System.out.println(contatos[i].toString());
-            } else if (contatos[i].getTelefone().startsWith(prefixo)) {
-                System.out.println(contatos[i].toString());
+            if (contatos[i].getNome().startsWith(prefixo) || contatos[i].getTelefone().startsWith(prefixo)) {
+                encontrados++;
             }
         }
+        Contato[] contatosEncontrados = new Contato[encontrados];
+
+        for (int j = 0; j < tamanho; j++) {
+            if (contatos[j].getNome().startsWith(prefixo) || contatos[j].getTelefone().startsWith(prefixo)) {
+                contatosEncontrados[j] = contatos[j];
+            }
+        }
+
+        return contatosEncontrados;
 
     }
 
@@ -153,7 +162,5 @@ public class Agenda {
             contatos = novo;
         }
     }
-
-
 
 }
