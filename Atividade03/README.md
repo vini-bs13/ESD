@@ -8,7 +8,7 @@ Por que essa abordagem usando um array de instâncias da classe Vetor torna a bu
 
 Pegando como exemplo um sistema com um milhão de contatos cadastrados, ao percorrer
 todo o vetor temos que procurar um contato no meio de um milhão, mas se a busca for dividida
-em 26 arrays diferentes, esse número se torna melhor, o que significa mais eficiente e menos custoso.
+em 26 arrays diferentes, esse número se torna menor, o que significa mais eficiente e menos custoso.
 
 
 ## Questão - 2
