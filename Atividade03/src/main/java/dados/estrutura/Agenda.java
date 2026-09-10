@@ -5,8 +5,11 @@ public class Agenda {
     private Vetor<Contato>[] letras;
     private int tamanho;
 
+
+    @SuppressWarnings("unchecked")
     public Agenda() {
-        letras = new Vetor[26];
+        letras = (Vetor<Contato>[]) new Vetor[26];
+
         for (int i = 0; i < 26; i++) {
             letras[i] = new Vetor<>();
 
@@ -37,8 +40,13 @@ public class Agenda {
         }
 
         vetor.inserirOrdenado(contato);
+        int posicao = vetor.localizar(contato);
         tamanho++;
-        System.out.println("Contato adicionado com sucesso!" + '\n');
+        System.out.println("Contato " + contato.getNome() +
+                " adicionado com sucesso na letra: '" +
+                contato.getNome().charAt(0) +
+                "' no indice " +
+                posicao + '\n');
     }
 
     public void removerContatoIndice(int indice, Vetor<Contato> vetor) {
@@ -63,7 +71,10 @@ public class Agenda {
 
             if (contatoAtual.getNome().equals(nome)) {
                 removerContatoIndice(i, vetor);
-                System.out.println("Contato removido com sucesso!" + '\n');
+                System.out.println("Contato '" + contatoAtual.getNome() +
+                        "' removido com sucesso do vetor: '" +
+                        contatoAtual.getNome().charAt(0) +
+                        "'" + '\n');
                 return;
             }
         }
@@ -83,10 +94,14 @@ public class Agenda {
             Contato contatoAtual = (Contato) vetor.ler(i);
 
             if (contatoAtual.getNome().equals(contato.getNome())) {
+                 System.out.println("Contato encontado no vetor: '" + contatoAtual.getNome().charAt(0) +
+                        "' |" + contatoAtual.getNome() + " , " +
+                        contatoAtual.getTelefone() + '\n');
                 return contatoAtual;
             }
         }
-        return null;
+        System.out.println("Erro! O contato a seguir não foi encontrado.");
+        return contato;
     }
 
 
@@ -128,7 +143,7 @@ public class Agenda {
 
                 vetorNovo.inserirOrdenado(contatoAtualizado);
 
-                System.out.println("Contato atualizado com sucesso!" + '\n');
+                System.out.println("Contato '" + contatoAtualizado.getNome() + "' atualizado com sucesso!" + '\n');
                 return;
 
             }

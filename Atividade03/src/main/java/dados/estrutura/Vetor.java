@@ -40,7 +40,7 @@ public class Vetor<T extends Comparable<T>> {
 
     @SuppressWarnings("unchecked")
     private void expandir(){
-        T[] novo = (T[]) new Object[this.elementos.length * 2];
+        T[] novo = (T[]) new Comparable[this.elementos.length * 2];
         for (int i = 0; i < this.elementos.length; i++){
             novo[i] = this.elementos[i];
         }
@@ -54,7 +54,7 @@ public class Vetor<T extends Comparable<T>> {
         // Quando diminuir?
         if (tamanho <= elementos.length/4){
             // Quanto diminuir?
-            T[] novo =(T[])  new Object[elementos.length/2];
+            T[] novo =(T[])  new Comparable[elementos.length/2];
             for (int i = 0; i < tamanho; i++) {
                 novo[i] = elementos[i];
             }
