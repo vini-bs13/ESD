@@ -33,4 +33,15 @@ public class Stack<T extends Comparable<T>> {
         }
         return vetor.ler(vetor.obterTamanho()-1);
     }
+//    public String Conteudo() {
+//        if (isEmpty()){
+//            throw new RuntimeException("Vazio");
+//        }
+//
+//        String conteudo = " ";
+//        for (int i = 0; i < vetor.obterTamanho()-1; i++) {
+//            conteudo +=
+//
+//        }
+//    }
 }
