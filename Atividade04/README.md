@@ -127,5 +127,5 @@ e no próximo looping do `while` ele vai entrar na condicional de `'T'` e retorn
 
 
 - O pior caso seria não ter um final ou ter que percorrer todos os caminhos do labirinto,
-logo que isso faria o sistema rodar todas as possibilidades possíveis antes de dar erro.
+logo que isso faria o sistema rodar todas as possibilidades antes de dar erro.
  
