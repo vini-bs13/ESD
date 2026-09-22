@@ -52,7 +52,7 @@ public class Vetor<T extends Comparable<T>> {
     private void reduzir(){
 
         // Quando diminuir?
-        if (tamanho <= elementos.length/4){
+        if (tamanho <= elementos.length/4 && elementos.length > 1){
             // Quanto diminuir?
             T[] novo =(T[])  new Comparable[elementos.length/2];
             for (int i = 0; i < tamanho; i++) {
@@ -67,7 +67,7 @@ public class Vetor<T extends Comparable<T>> {
             System.out.println("Índice inválido");
             return;
         }
-        for (int i = indice; i < tamanho; i++) {
+        for (int i = indice; i < tamanho - 1; i++) {
             elementos[i] = elementos [i + 1];
         }
         elementos[tamanho - 1] = null;
