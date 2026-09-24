@@ -83,21 +83,32 @@ public class Agenda {
 
     }
 
+    // Agora com busca binária
+
     public Contato buscarContato(Contato contato) {
 
         int indice = obterIndiceLetra(contato.getNome());
 
         Vetor<Contato> vetor = letras[indice];
 
-        for (int i = 0; i < vetor.getTamanho(); i++) {
+        int inicio = 0;
+        int fim =  vetor.getTamanho() - 1;
 
-            Contato contatoAtual = (Contato) vetor.ler(i);
+        while(inicio <= fim) {
+            int meio =  (inicio + fim) / 2;
+            Contato contatoAtual = (Contato) vetor.ler(meio);
 
-            if (contatoAtual.getNome().equals(contato.getNome())) {
+            int comparacao = contatoAtual.getNome().compareTo(contato.getNome());
+
+            if (comparacao == 0) {
                  System.out.println("Contato encontado no vetor: '" + contatoAtual.getNome().charAt(0) +
                         "' |" + contatoAtual.getNome() + " , " +
                         contatoAtual.getTelefone() + '\n');
                 return contatoAtual;
+            } else if (comparacao < 0) {
+                inicio = meio + 1;
+            } else {
+                fim = meio - 1;
             }
         }
         System.out.println("Erro! O contato a seguir não foi encontrado.");
