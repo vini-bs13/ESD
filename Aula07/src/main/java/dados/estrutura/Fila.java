@@ -20,9 +20,9 @@ public class Fila<T extends Comparable> {
         tamanho++;
     }
 
-    private boolean isEmpty(){
-        return tamanho == 0;
-    }
+//    private boolean isEmpty(){
+//        return tamanho == 0;
+//    }
 
 
     // Desse jeito o big O (complexidade) fica O(elevado a n - "Ó de n")
@@ -60,4 +60,15 @@ public class Fila<T extends Comparable> {
             System.out.println();
         }
     }
+
+    protected boolean isEmpty(){
+        return tamanho == 0;
+    }
+
+    protected boolean isFull(){
+        return tamanho == elementos.length;
+    }
+
+    protected int getTamanho(){ return tamanho;}
+
 }

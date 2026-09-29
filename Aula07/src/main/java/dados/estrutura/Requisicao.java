@@ -1,14 +1,19 @@
 package dados.estrutura;
 
-public class Requisicoes implements Comparable<Requisicoes> {
+public class Requisicao implements Comparable<Requisicao> {
+    private static int GERADORDEIDFULEIRA = 0;
+
+
     private int id;
+    private int numeroCiclo;
     private String origem;
     private String situacao;
 
-    public Requisicoes(int id, String origem, String situacao) {
-        this.id = id;
+    public Requisicao(String origem, String situacao, int numeroCiclo) {
+        this.id = ++GERADORDEIDFULEIRA;
         this.origem = origem;
         this.situacao = situacao;
+        this.numeroCiclo = numeroCiclo;
     }
 
 
@@ -23,7 +28,7 @@ public class Requisicoes implements Comparable<Requisicoes> {
 
 
     @Override
-    public int compareTo(Requisicoes o) {
+    public int compareTo(Requisicao o) {
         return 0;
     }
 }
