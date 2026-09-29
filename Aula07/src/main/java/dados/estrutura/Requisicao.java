@@ -5,15 +5,13 @@ public class Requisicao implements Comparable<Requisicao> {
 
 
     private int id;
-    private int numeroCiclo;
     private String origem;
     private String situacao;
 
-    public Requisicao(String origem, String situacao, int numeroCiclo) {
+    public Requisicao(String origem, String situacao) {
         this.id = ++GERADORDEIDFULEIRA;
         this.origem = origem;
         this.situacao = situacao;
-        this.numeroCiclo = numeroCiclo;
     }
 
 

@@ -69,6 +69,4 @@ public class Fila<T extends Comparable> {
         return tamanho == elementos.length;
     }
 
-    protected int getTamanho(){ return tamanho;}
-
 }

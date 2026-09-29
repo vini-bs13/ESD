@@ -6,40 +6,61 @@ public class Servidor {
 
     private final Fila<Requisicao> fila;
     private final int processadores;
-    private final int maxChegadas;
+    private final int maxGeradas;
+    private int reqsAtendidas;
     private final Random rnd;
 
     private int totalChegadas;
     private int perdidas;
 
-    public Servidor(int capacidadeFila, int processadores, int maxChegadas, Random rnd) {
+    public Servidor(int capacidadeFila, int processadores, int maxGeradas, Random rnd) {
         this.fila = new Fila<>(capacidadeFila);
         this.processadores = processadores;
-        this.maxChegadas = maxChegadas;
+        this.maxGeradas = maxGeradas;
         this.rnd = rnd;
         this.totalChegadas = 0;
         this.perdidas = 0;
     }
 
     public void executar(int numeroCiclo){
+        for (int ciclo = 0; ciclo <= numeroCiclo; ciclo++) {
 
-        for(int pedidos = 0; pedidos < processadores && !fila.isEmpty(); pedidos++){
+
+
+        for(int requisicoes = 0; requisicoes < processadores && !fila.isEmpty(); requisicoes++){
             fila.desenfileirar();
+            reqsAtendidas++;
         }
 
-        int novasChegadas = rnd.nextInt(maxChegadas + 1);
+        int novasChegadas = rnd.nextInt(1,maxGeradas);
         for (int i = 0; i < novasChegadas; i++) {
             totalChegadas++;
             if(fila.isFull()){
                 perdidas++;
             } else {
-                fila.enfileirar(new Requisicao("cliente" + rnd.nextInt(100), "bala", numeroCiclo ));
+                fila.enfileirar(new Requisicao("cliente", "bala"));
+                }
             }
-            
         }
     }
 
     public double getProbPerda(){
-        return totalChegadas == 0 ? 0 : (double) perdidas / totalChegadas;
+
+        if(totalChegadas == 0){
+            return 0;
+        } else {
+            return (double) perdidas / totalChegadas;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Servidor{" +
+                " processadores=" + processadores +
+                ", maxGeradas=" + maxGeradas +
+                ", reqsAtendidas=" + reqsAtendidas +
+                ", totalChegadas=" + totalChegadas +
+                ", perdidas=" + perdidas +
+                '}';
     }
 }
